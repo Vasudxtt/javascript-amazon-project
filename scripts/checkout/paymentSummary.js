@@ -26,8 +26,8 @@ export function renderPaymentSummary(){
           </div>
 
           <div class="payment-summary-row">
-            <div>Items (3):</div>
-            <div class="payment-summary-money ${formatCurrency(productPriceCents)}</div>
+            <div>Items (3):  ${formatCurrency(productPriceCents)}</div>
+            <div class="payment-summary-money </div>
           </div>
 
           <div class="payment-summary-row">
