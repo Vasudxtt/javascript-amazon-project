@@ -1,3 +1,3 @@
 export function formatCurrency(priceCents){
-  return `INR ${(priceCents/100).toFixed(2)}`;
+  return `INR ${(Math.round(priceCents)/100).toFixed(2)}`;
 }
