@@ -61,6 +61,30 @@ class Clothing extends Product {
 
 }
 
+// const date = new Date();
+// console.log(date);
+// console.log(date.toLocaleTimeString());
+//console.log(this); // here this will be undefined as this is outside of object so it will show undefined
+
+// this will not run as this is not inside any object or method
+// const object2 ={
+//   a:2,b:this.a
+// };
+
+// function logThis(){
+//   console.log(this);
+// }
+// logThis();
+// logThis.call("hello"); // this will set the value of this to hello.
+
+// this;
+// const object3 ={
+//   method:()=>{
+//     console.log(this);
+//   }
+// };
+// object3.method();
+
 export const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
