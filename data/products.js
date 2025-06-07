@@ -1,18 +1,18 @@
- import { formatCurrency } from "../scripts/utils/money.js";
- 
- export function getProduct(productId){
+import { formatCurrency } from "../scripts/utils/money.js";
+
+export function getProduct(productId) {
   let matchingProduct;
 
-    products.forEach((product) =>{
-      if (product.id === productId){
-        matchingProduct = product;
-      }
-    });
+  products.forEach((product) => {
+    if (product.id === productId) {
+      matchingProduct = product;
+    }
+  });
 
-    return matchingProduct;
- }
- 
- class Product{
+  return matchingProduct;
+}
+
+class Product {
   id;
   image;
   name;
@@ -20,25 +20,48 @@
   priceCents;
 
 
-constructor(productDetails){
-this.id = productDetails.id;
-this.image = productDetails.image;
-this.name = productDetails.name;
-this.rating = productDetails.rating;
-this.priceCents = productDetails.priceCents;
+  constructor(productDetails) {
+    this.id = productDetails.id;
+    this.image = productDetails.image;
+    this.name = productDetails.name;
+    this.rating = productDetails.rating;
+    this.priceCents = productDetails.priceCents;
+  }
+
+  getStarsUrl() {
+    return `images/ratings/rating-${this.rating.stars * 10}.png`;
+  }
+
+  getPrice() {
+    return `${formatCurrency(this.priceCents)}`;
+  }
+
+  extraInfoHTML() {
+    return "";
+  }
+}
+class Clothing extends Product {
+  sizeChartLink;
+
+
+  constructor(productDetails) {
+    // this bascially call an dat structure from a parent class
+    super(productDetails);
+    this.sizeChartLink = productDetails.sizeChartLink;
+  }
+
+  extraInfoHTML() {
+    // this basically calls the method from an parent class
+    //super.extraInfoHTML();
+    return `
+  <a href = "${this.sizeChartLink}" target = "_blank">Size chart
+  </a>
+  `
+  }
+
 }
 
-getStarsUrl(){
-  return `images/ratings/rating-${this.rating.stars*10}.png`;
-}
-
-getPrice(){
-  return `${formatCurrency(this.priceCents)}`;
-}
- }
-
-
- export const products = [
+export const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
     image: "images/products/athletic-cotton-socks-6-pairs.jpg",
@@ -697,6 +720,9 @@ getPrice(){
       "mens"
     ]
   }
-].map((productDetails)=>{
+].map((productDetails) => {
+  if (productDetails.type === 'clothing') {
+    return new Clothing(productDetails);
+  }
   return new Product(productDetails);
 });
