@@ -100,9 +100,12 @@ products = productsData.map((productDetails) => {
     });
 
     console.log('load products');
-  });
+   }).catch((error)=>{
+     console.log('Unexcepted error.Please try again LLLater');
+   });
   return promise;
 }
+// this is used for promises to catch error --->  loadProductsFetch();
 
 // loadProductsFetch().then(()=>{
 //   console.log('next step');
@@ -126,10 +129,15 @@ export function loadProducts(fun) {
     
   });
 
+  //error handling
+  xhr.addEventListener('error',(error)=>{
+    console.log('Unexcepted error.Please try again later');
+  });
+// we are adding a error urlfor checking of our function
   xhr.open('GET', 'https://supersimplebackend.dev/products');
   xhr.send();
 }
-
+// this is used for error hndling in callbacks    --> loadProducts();
 
 // export const products = [
 //   {
